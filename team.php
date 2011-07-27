@@ -9,11 +9,13 @@
       but this day they suddenly had enough of hacking lousy web frameworks and thought "heck, why not do this on our own?"     
     </p>
     <p>
-      Some time earlier, lead developer Hannes Landeholm had already begun working on a skeleton.
-      The team decided to initiate development of a new project dubbed NanoMVC.
-      NanoMVC was used internally for dozens of consulting projects and iterated and improved upon.
-      In 2011 the framework was released publicly in a BSD License and since then the excitement of Melt has been shared with the world.
+      Some time earlier, lead developer Hannes Landeholm had already begun working on the first building blocks.
+      The team decided to initiate development of a project dubbed NanoMVC.
+      NanoMVC was used internally for dozens of consulting projects and heavily iterated upon.
+      In 2011 the framework was released to the public under a BSD License and since then the excitement has been shared with the world.
     </p>
+    
+   
 </div>
 
 
