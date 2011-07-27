@@ -3,7 +3,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Melt PHP Framework</title>
+<title>Melt: The PHP Framework You've Been Waiting For</title>
 
 <link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/buttons.css" type="text/css" media="screen" />
