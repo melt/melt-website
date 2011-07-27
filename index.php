@@ -207,7 +207,7 @@
         <h3>Follow New Releases</h3>
         
         <p>
-            <a href="http://twitter.com/meltframework">Follow Melt on Twitter</a> to
+            <a href="http://twitter.com/meltframework" target="_blank">Follow Melt on Twitter</a> to
             stay up to date with new releases and patches.       
         </p>
     </li>
@@ -230,7 +230,7 @@
         <h3>Get Answers to Your Questions</h3>
         
         <p>
-            <a href="http://stackoverflow.com/questions/ask">Ask your question on Stack Overflow</a> and tag it <b>melt</b> to get help.      
+            <a href="http://stackoverflow.com/questions/ask" target="_blank">Ask your question on Stack Overflow</a> and tag it <b>melt</b> to get help.      
         </p>
     </li>
     
@@ -275,7 +275,7 @@
         <h3>Make Tutorials & Screencasts</h3>
         
         <p>
-           Use your weblog to write a tutorial or publish a screencast on YouTube or Vimeo. <a href="">Send us the link</a> to include it in the list of tutorials on GitHub.      
+           Use your weblog to write a tutorial or publish a screencast on YouTube or Vimeo. <a href="team.php#contact">Send us the link</a> to include it in the list of tutorials on GitHub.      
         </p>
     </li>
     
@@ -297,7 +297,7 @@
         
         <p>
             Become the official ambassador at your university campus to share the excitement of the framework and help your fellow students discover the power of Melt.
-            <a href="">Contact us to apply!</a>                      
+            <a href="team.php#contact">Contact us to apply!</a>                      
         </p>
     </li>
     

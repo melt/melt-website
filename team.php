@@ -66,7 +66,13 @@
         </p>
     </li>
 
+    <li>
 
+        <h2><span>Contact</span> Melt</h2>
+        <p id="contact">Contact the Melt team by sending an email to <b><a href="mailto:team@meltframework.org">team@meltframework.org</a></b>.
+
+        </p>
+    </li>
 
 </ul>
 
