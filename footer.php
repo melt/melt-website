@@ -10,7 +10,7 @@
        */ ?>
       
 
-                                <h2 class="like-this-framework">We really think <span>you will like</span> this framework</h2>
+                                <!-- <h2 class="like-this-framework">We really think <span>you will like</span> this framework</h2> -->
   <div class="made-in-sweden"></div>
               
  <p class="copyright">

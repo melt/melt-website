@@ -2,10 +2,18 @@
 <div class="the-melt-story">
 
     <h2 class="subtitle">The <span>Melt</span> Story</h2>
-    <p>Melt was born on a chilled summer day </p>
-
-
-
+    <p>
+      Melt was born on a cold autumn day of 2009. The sky was cloudy and 
+      the first autumn leaves had fallen from the trees covering the frosty earth in a golden carpet.
+      The Melt team was working on one of their consulting projects - business as usual - 
+      but this day they suddenly had enough of hacking lousy web frameworks and thought "heck, why not do this on our own?"     
+    </p>
+    <p>
+      Some time earlier, lead developer Hannes Landeholm had already begun a project he called X.
+      The team decided to initiate development of a new PHP framework dubbed NanoMVC.
+      NanoMVC was used internally for dozens of consulting projects and iterated and improved upon.
+      In 2011 the framework was released publicly in a BSD License and since then the excitement of Melt has been shared with the world.
+    </p>
 </div>
 
 
@@ -24,7 +32,7 @@
 
         <h2>Contributors</h2>
         <p>Mikael Silvén<br/>
-            Deepak
+           Deependra Meena
         </p>
     </li>
 
