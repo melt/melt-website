@@ -19,18 +19,19 @@
 <![endif]-->
 
 <!-- include jquery here!! -->
-<script type='text/javascript' src='/js/jquery/jquery.js?ver=1.4.4'></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 <script type='text/javascript' src='/js/cufon-yui.js?ver=3.1.4'></script>
 <script type='text/javascript' src='/js/Gotham_300-Gotham_400-Gotham_italic_300-Gotham_italic_400.font.js?ver=3.1.4'></script>
 
 
+<meta name="description" content="Melt: Web application framework optimized simplicity and freedom. Better code in less time. Written in PHP." />
+<meta name="keywords" content="melt framework, melt, framework, web app, web application, app development, coding, melt software, php framework" />
+
+
+
 <script type="text/javascript">                   
     Cufon.replace('h1, h2.subtitle, h2, h3.not-found',{fontFamily: 'Gotham', hover: true });
-</script>
-<script type='text/javascript'>
-    
-
-</script>
+</script>    
 
 </head>
 

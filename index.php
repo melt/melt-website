@@ -3,11 +3,36 @@
 
 <?php include("download.php"); ?>
 
+<script type='text/javascript'>
+$(function() {
+    $("ul.features-list li").hover(
+    
+    function() {
+               var idx = $('ul.features-list li').index(this);
+               $('ul.features-list span').eq(idx).show();
+          },
+          function() {
+               var idx = $('#leftnav li').index(this);
+               $('ul.features-list span').eq(idx).hide();
+          }
+          
+          /*
+  function () {
+    $(this).("span").css("display","none");
+  }, 
+  function () {
+    $(this).("span").css("display","block");
+  }*/
+);
+    });
+</script> 
+
+
 <!-- START FEATURES LIST -->
 <h2>Features</h2>
 
 <ul class="features-list">
-    <li>MVC Design Pattern<p class="feature-caption">1: Here is the caption</p></li>
+    <li>MVC Design Pattern <span>Melt uses the Model-View-Controller design pattern</span></li>
     <li>CRUD & Scaffolding</li>
     <li>O/R Mapping</li>
     <li>Multi-Threading</li>
@@ -156,13 +181,13 @@
 <!-- START HIGHLIGHT -->
 <div class="free-bonus">
     <h2 class="big"><span>Bugs</span><br/><span class="small-title">(or feature suggestions)</span></h2>
-        <h2 class="help">Submit your issues to</h2>
+        <h2 class="help">Submit your issues on</h2>
         <a href="https://github.com/melt/melt/issues/" target="_blank"><img class="no-top-margin" src="images/github-logo.png" alt="" /></a>
            
     
     
      <ul>
-        <li><a href="https://github.com/melt/melt/issues/" target="_blank">Submit your issues to GitHub</a></li>
+        <li><a href="https://github.com/melt/melt/issues/" target="_blank">Submit your issues on GitHub</a></li>
         <li>Issues will be considered by the Melt development team</li>
         <li>Both feature suggestions and bugs are welcome (especially the ugly ones!)</li>
     </ul>    
@@ -233,7 +258,7 @@
         <h3>Submit a Bug or Suggestion</h3>
         
         <p>
-            <a href="https://github.com/melt/melt/issues" target="_blank">Submit your issues to GitHub</a> for them to be considered by the Melt team. Help us kill those ugly bugs swiftly!
+            <a href="https://github.com/melt/melt/issues" target="_blank">Submit your issues on GitHub</a> for them to be considered by the Melt team. Help us kill those ugly bugs swiftly!
         </p>
     </li>
           <li>

@@ -170,15 +170,19 @@ table.comparative td input.eStore_buy_now_button {background:url('images/table/b
 /* features list */
 ul.features-list {margin:0;padding:0;list-style-type:none;font-size:85%;height:170px;}
 ul.features-list li {background:url('images/icons/check.gif') no-repeat top left;margin:0 0 22px 0;padding:0 0 0 30px;height:26px;line-height:26px;float:left;width:162px;display:block;position:relative;}
+ul.features-list li:hover {cursor: pointer;}
 
-p.feature-caption {
+
+ul.features-list span {
     border:1px dotted #3d712a;
     background-color: #e6fadc;
     padding:4px;
     font-size:11px;
     color:#3d712a;
     line-height:16px;
-    display: none;position: absolute;top: 0px;left: 0px
+    display: none;position: absolute;top: 30px;left: 0px;
+    z-index: 100;
+    width:300px;
 }
 
 /* features free */
