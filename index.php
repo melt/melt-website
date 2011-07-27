@@ -1,98 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<title>Melt Framework</title>
-
-<link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/buttons.css" type="text/css" media="screen" />
-
-<!-- [favicon] begin -->
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<!-- [favicon] end -->
-
-<!-- Some hacks for the dreaded IE7 ;) -->
-<!--[if IE 7]>
-    <link rel="stylesheet" href="/css/ie7.css" type="text/css" media="screen" />
-<![endif]-->
-
-<!-- include jquery here!! -->
-<script type='text/javascript' src='/js/cufon-yui.js?ver=3.1.4'></script>
-<script type='text/javascript' src='/js/Gotham_300-Gotham_400-Gotham_italic_300-Gotham_italic_400.font.js?ver=3.1.4'></script>
-
-
-<script type="text/javascript">                   
-    Cufon.replace('h1, h2.subtitle, h2, h3.call, h3.not-found',{fontFamily: 'Gotham', hover: true });
-</script>
-<script  type='text/javascript'>
-    
-$(function() {
-     $('.features-list li').hover(
-          function() {
-               var idx = $('.features-list li').index(this);
-               $('.features-list li p').eq(idx).show();
-          },
-          function() {
-               var idx = $('.features-list li').index(this);
-               $('.features-list li p').eq(idx).hide();
-          }
-  });
-});
-</script>
-<script  type='text/javascript'>
-$(document).ready(function(){
-	$(".button").hover(function() {
-		$(this).attr("src","button-hover.png");
-			}, function() {
-		$(this).attr("src","button.png");
-	});
-});
-</script>
-</head>
-
-<body class="home page page-id-2 page-template page-template-landing-php">
-    <!-- START CONTAINER -->
-    <div class="container">
-    
-        <!-- START LOGO -->
-    	<a href="index.html" title="Melt Framework">
-            <img src="/images/melt-logo.png" class="logo" alt="Melt Framework" />
-        </a>
-        <!-- END LOGO -->
-<br/>
+<?php include("header.php"); ?>
         
         <h2 class="subtitle">The <span>PHP framework</span> you've been waiting for</h2>
 <!-- <img src="/images/screen-header.jpg" alt="Beauty and Clean - Free Minimal Wordpress Theme" /> -->
                         <!-- <h1>Build <span>secure</span> and <span>scalable</span> web apps in <span>less time</span></h1>-->
 
 
-
-<!-- START CALL TO ACTIONS -->
-<ul class="actions">
-    
-
-    
-    <li><a class="green button" href="http://github.com/melt/melt">Download Melt<span>Completely free, BSD License</span></a></li>
-    <p class="tinyText">Version 1.0 released July 27th, 2011. Requires PHP 5.3 & MySQL.</p>
- 
-        
-    <!-- https://api.github.com/users/melt/repos?per_page=100&page=1-->
-</ul>
-<div class="socialmediabuttons">
-	<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-	<fb:like href="facebook.com/pages/Melt-Framework/232843960089743" send="false" layout="button_count" width="80" show_faces="false" font=""></fb:like>
-	
-	<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="meltframework" data-lang="en">Tweet</a>
-	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-	
-	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-	<g:plusone size="small" href="http://www.meltframework.org"></g:plusone>
-</div>
-
-<div class="clearer"></div>
-<!-- END CALL TO ACTIONS -->
+<?php include("download.php"); ?>
 
 <!-- START FEATURES LIST -->
 <h2>Features</h2>
@@ -220,18 +133,8 @@ $(document).ready(function(){
 
 
 
-<!-- START CALL TO ACTIONS -->
-<ul class="actions">
-    
+<?php include("download.php"); ?>
 
-    
-    <li><a class="green button" href="http://github.com/melt/melt">Download Melt<span>Completely free, BSD License</span></a></li>
-    <p class="tinyText">Version 1.0 released July 27th, 2011. Requires PHP 5.3 & MySQL.</p>
- 
-        
-    <!-- https://api.github.com/users/melt/repos?per_page=100&page=1-->
-</ul>
-  
 
 
 <!-- START FREE BONUS 2 -->
@@ -412,60 +315,10 @@ $(document).ready(function(){
 
 
 
-<!-- START CALL TO ACTIONS -->
-<ul class="actions">
-    
+<?php include("download.php"); ?>
 
-    
-    <li><a class="green button" href="http://github.com/melt/melt">Download Melt<span>Completely free, BSD License</span></a></li>
-    <p class="tinyText">Version 1.0 released July 27th, 2011. Requires PHP 5.3 & MySQL.</p>
- 
-        
-    <!-- https://api.github.com/users/melt/repos?per_page=100&page=1-->
-</ul>
   
 
 
 <!-- Testimonials, Screencasts -->
-
-
-    <div id="footer">
-    <?php /*
-        <div class="menu-footer"><ul id="menu-footer" class="menu"><li id="menu-item-59" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-59"><a href="index.html">Home</a></li>
-        <li id="menu-item-10" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10"><a href="terms-and-conditions/index.html">License</a></li>
-<li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="http://stackoverflow.com/questions/tagged/melt">Team & Contributors</a></li>
-</ul></div>  -->    
-        
-       */ ?>
-      
-
-                                <h2 class="like-this-framework">We really think <span>you will like</span> this framework</h2>
-  <div class="made-in-sweden"></div>
-              
- <p class="copyright">
-            Copyright&nbsp;&copy;&nbsp;2010-2011 Melt Software AB. 
-
-           
-            Melt is licensed under <a href="">the BSD License</a> and maintained by <a href="">the awesome Melt team</a>.
-            <br/>
-        </p>
-  
-  
-  <p class="footer-follow">
-			<a id="follow-us-on-twitter" class="no-hover" href="http://www.twitter.com/meltframework"></a>
-			<a id="follow-us-on-facebook" class="no-hover" href="http://www.facebook.com/pages/Melt-Framework/232843960089743"></a>
-		</p>
-		
-    </div>
-
-
-
-	
-</div>
-<!-- END CONTAINER -->
-	
-</body>
-</html>
-
-<!-- GitHub Ribbon -->
-<a href="http://github.com/melt"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
+<?php include("footer.php"); ?>
