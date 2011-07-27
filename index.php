@@ -1,9 +1,5 @@
 <?php include("header.php"); ?>
         
-        <h2 class="subtitle">The <span>PHP framework</span> you've been waiting for</h2>
-<!-- <img src="/images/screen-header.jpg" alt="Beauty and Clean - Free Minimal Wordpress Theme" /> -->
-                        <!-- <h1>Build <span>secure</span> and <span>scalable</span> web apps in <span>less time</span></h1>-->
-
 
 <?php include("download.php"); ?>
 
@@ -38,10 +34,10 @@
 <div class="clearer"></div>
 <!-- END FEATURES LIST -->
 
-<!-- START FREE FEATURES -->
+<!-- START FEATURES -->
 <h2 class="big">Why You'll  <span>Love</span> Melt</h2>
 
-<ul class="free-features">
+<ul class="features">
     <li>
         <img src="/images/features/unix-like-console.jpg" alt="" />
         
@@ -87,13 +83,13 @@
 </ul>
 
 <div class="clearer"></div>
-<!-- END FREE FEATURES -->
+<!-- END FEATURES -->
 
 
-<!-- START FREE FEATURES -->
+<!-- START FEATURES -->
 <h2 class="big">Coding <span>Happiness</span></h2>
 
-<ul class="free-features">
+<ul class="features">
     <li>
         <img src="/images/integrations/jquery.png" alt="" />
         
@@ -118,7 +114,7 @@
 </ul>
 
 <div class="clearer"></div>
-<!-- END FREE FEATURES -->
+<!-- END FEATURES -->
 
 
 
@@ -127,17 +123,13 @@
 
 
 
-        <h2 class="subtitle">The <span>PHP framework</span> you've been waiting for</h2>
-<!-- <img src="/images/screen-header.jpg" alt="Beauty and Clean - Free Minimal Wordpress Theme" /> -->
-                        <!-- <h1>Build <span>secure</span> and <span>scalable</span> web apps in <span>less time</span></h1>-->
-
 
 
 <?php include("download.php"); ?>
 
 
 
-<!-- START FREE BONUS 2 -->
+<!-- START HIGHLIGHT -->
 <div class="free-bonus">
     <h2 class="big"><span>Need Help?</span><!-- <span class="small-title">($37 Value)</span>--></h2>
     
@@ -153,7 +145,7 @@
    
     
 </div>
-<!-- END FREE BONUS 2 -->
+<!-- END HIGHLIGHT -->
 
 
 
@@ -161,7 +153,7 @@
 
   
   
-<!-- START FREE BONUS 2 -->
+<!-- START HIGHLIGHT -->
 <div class="free-bonus">
     <h2 class="big"><span>Bugs</span><br/><span class="small-title">(or feature suggestions)</span></h2>
         <h2 class="help">Submit your issues to</h2>
@@ -179,17 +171,17 @@
     <h2><span>Yours FREE When You Get Instant Access To The Theme TODAY!</span></h2> */ ?>
     
 </div>
-<!-- END FREE BONUS 2 -->
+<!-- END HIGHLIGHT -->
 
 
 
 
 
 
-<!-- START FREE FEATURES -->
+<!-- START FEATURES -->
 <h2 class="big">Join the  <span>Community</span></h2>
 
-<ul class="free-features">
+<ul class="features">
     <li>
         <img src="/images/community/get-started-with-melt.png" alt="" />
         
@@ -241,7 +233,7 @@
         <h3>Submit a Bug or Suggestion</h3>
         
         <p>
-            <a href="https://github.com/melt/melt/issues" target="_blank">Submit your issues to GitHub</a> for them to be considered by the Melt team. We want to kill those ugly bugs swiftly!
+            <a href="https://github.com/melt/melt/issues" target="_blank">Submit your issues to GitHub</a> for them to be considered by the Melt team. Help us kill those ugly bugs swiftly!
         </p>
     </li>
           <li>
@@ -257,17 +249,17 @@
 </ul>
 
 <div class="clearer"></div>
-<!-- END FREE FEATURES -->
+<!-- END FEATURES -->
 
 
 
 
 
 
-<!-- START FREE FEATURES -->
+<!-- START FEATURES -->
 <h2 class="big">Spread the  <span>Love</span></h2>
 
-<ul class="free-features">
+<ul class="features">
   
     <li>
         <img src="/images/community/make-tutorials-and-screencasts.png" alt="" />
@@ -296,7 +288,7 @@
         <h3>Become a Campus Ambassador</h3>
         
         <p>
-            Become the official ambassador at your university campus to share the excitement of the framework and help your fellow students discover the power of Melt.
+            Become the official ambassador at your university campus to share the excitement of the framework and help your fellow students discover how Melt enriches school projects.
             <a href="team.php#contact">Contact us to apply!</a>                      
         </p>
     </li>
@@ -304,14 +296,13 @@
 </ul>
 
 <div class="clearer"></div>
-<!-- END FREE FEATURES -->
+<!-- END FEATURES -->
 
 
 
 
-        <h2 class="subtitle">The <span>PHP framework</span> you've been waiting for</h2>
-<!-- <img src="/images/screen-header.jpg" alt="Beauty and Clean - Free Minimal Wordpress Theme" /> -->
-                        <!-- <h1>Build <span>secure</span> and <span>scalable</span> web apps in <span>less time</span></h1>-->
+    
+
 
 
 

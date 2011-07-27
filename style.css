@@ -34,14 +34,12 @@ h2 {font-size:200%;margin:0.5em 0;border-bottom:1px solid #d0d0d0;padding-bottom
 h2.subtitle {font-size:200%;text-align:center;border-bottom:none;}
 h2.like-this-framework {margin:2em 0;font-size:200%;text-align:center;border-bottom:none;}
 h2.big {font-size:370%;}
-.free-features h2 {border-bottom:none;}
+.features h2 {border-bottom:none;}
 
 h2.big-big {font-size:670%;text-align:center;border-bottom:none;}
 h2.big-big span {text-decoration:underline;}
 h2.premium span {color:#3693a7;}
 h3 {font-size:150%;text-transform:none;font-weight:normal;line-height:1.25;margin-bottom:0.75em;color:#4dbaff;padding:0 20px;}
-h3.call {text-align:center;font-size:520%;text-transform:uppercase;color:#635f64;}
-h3.call span {color:#3693a7;text-decoration:underline;}
 h3.not-found {text-align:center;font-size:420%;text-transform:uppercase;color:#635f64;}
 ul.premium-features h3 {color:#0f5b6b;}
 .hentry h3,.hentry h1 {padding:0;}
@@ -91,7 +89,7 @@ tr {/*border:1px solid #ccc;*/}
 tfoot {font-style:italic;}
 table.no-border, table.no-border td, table.no-border th {border:none;}
 
-form {font-size:90%;}*/
+form {font-size:90%;}
 label {vertical-align:middle;font-weight:bold;float:left;width:150px;display:block;clear:left;margin:0;text-align:left;font-size:1em;line-height:1.25;}
 fieldset {padding:1.4em 1.4em 0 1.4em;margin:0;}
 legend {font-weight:bold;font-size:1.2em;}
@@ -184,13 +182,13 @@ p.feature-caption {
 }
 
 /* features free */
-ul.free-features, ul.premium-features {margin:0;padding:0;list-style-type:none;}
-ul.free-features li, ul.premium-features li {float:left;width:480px;}
-ul.free-features li img, ul.premium-features li img {float:left;margin:0 15px 50px 0;padding:3px;border:1px solid #d4d5d5;}
-ul.free-features li p, ul.premium-features li p {padding-right:20px;}
-ul.free-features.team li, ul.premium-features li {float:left;width:320px;}
-ul.free-features.team h3 {}
-ul.free-features li img {
+ul.features, ul.premium-features {margin:0;padding:0;list-style-type:none;}
+ul.features li, ul.premium-features li {float:left;width:480px;}
+ul.features li img, ul.premium-features li img {float:left;margin:0 15px 50px 0;padding:3px;border:1px solid #d4d5d5;}
+ul.features li p, ul.premium-features li p {padding-right:20px;}
+ul.features.team li, ul.premium-features li {float:left;width:320px;}
+ul.features.team h3 {}
+ul.features li img {
     border:0!important;
 }
 

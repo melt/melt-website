@@ -17,9 +17,9 @@
 </div>
 
 
-<!-- START FREE FEATURES -->
+<!-- START FEATURES -->
 
-<ul class="free-features team">
+<ul class="features team">
     <li>
 
         <h2>Team</h2>
@@ -47,7 +47,7 @@
 </ul>
 
 <div class="clearer"></div>
-<!-- END FREE FEATURES -->
+<!-- END FEATURES -->
 
 
 
@@ -55,8 +55,8 @@
 
 
 
-<!-- START FREE FEATURES -->
-<ul class="free-features">
+<!-- START FEATURES -->
+<ul class="features">
     <li>
 
         <h2>Campus Ambassadors</h2>
@@ -77,7 +77,7 @@
 </ul>
 
 <div class="clearer"></div>
-<!-- END FREE FEATURES -->
+<!-- END FEATURES -->
 
 
 <?php include("footer.php"); ?>
