@@ -31,7 +31,7 @@ namespace melt\core\config {
     const ERROR_LOG = NULL;
     const FORCE_ERROR_FLAGS = false;
     const FORCE_ERROR_DISPLAY = false;
-    const MAINTENANCE_MODE = true;
+    const MAINTENANCE_MODE = false;
     const DEVELOPER_KEY = 'd36fdbb270fb';
 }
 
