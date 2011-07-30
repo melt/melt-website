@@ -4,7 +4,7 @@
     <h2 class="subtitle">The <span>Melt</span> Story</h2>
     <p>
       Melt was born on a cold autumn day of 2009. The sky was cloudy and 
-      the first autumn leaves had fallen from the trees covering the frosty earth in a golden carpet.
+      the first autumn leaves had fallen from the trees covering the ground in a golden carpet.
       The Melt team was working on one of their consulting projects - business as usual - 
       but this day they suddenly had enough of hacking lousy web frameworks and thought "heck, why not do this on our own?"     
     </p>
