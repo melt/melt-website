@@ -334,7 +334,7 @@ $(function() {
         
         <h3>Get the Melt Logo</h3>
         <p>
-            Print the logo, make a t-shirt or put it on your website. <a href="<?php echo APP_ROOT_URL; ?>static/img/melt-logo-original.png">Download the official logo</a> and show people that you are a Melt developer.        
+            Print the logo, make a t-shirt or put it on your website. <a href="<?php echo APP_ROOT_URL; ?>static/img/melt-logo-original.png">Download the logo</a> or <a href="<?php echo APP_ROOT_URL; ?>static/img/melt-wallpaper.jpg">desktop wallpaper</a> and show people that you are a Melt developer.   
         </p>
     </li>
     
