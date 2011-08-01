@@ -40,7 +40,7 @@ $(function() {
     <li>Session Handling <span>Melt provides a secure session handling component to power session-based web apps. </span></li>
     <li>Mail Spooling <span>Melt provides a mail spooler that stores emails in the database until they can be sent.</span></li>
     <li>Authentication <span>Melt provides authentication and permission features to quickly build role-based apps.</span></li>
-    <li>Painless AJAX <span>Melt provides painless AJAX via JQuery and handles dynamic AJAX requests for you.</span></li>    
+    <li>AJAX Integration <span>Melt is shipped with AJAX integration via JQuery and handles dynamic AJAX requests for you.</span></li>    
     <li>Debugging & Profiling <span>Melt provides debugging tools and suggests fixes to help you use the framework properly.</span></li>
     <li>Error Handling <span>Melt provides error handling and comprehensive logs to help you understand and solve problems.</span></li>
     <li>Third-Party Friendly <span>Melt works well with third-party code and allows you to easily integrate existing classes.</span></li>  
