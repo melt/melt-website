@@ -83,7 +83,8 @@ $(function() {
         <h3>No SQL Needed</h3>
         
         <p>
-            Melt syncronizes against SQL to keep your database clean and tidy and even provides table indexing should you need it.
+            Melt lets you keep your model declarations in the application where they belong. 
+            Clean, tidy and always in sync. No SQL needed.
         </p>
     </li>
     
