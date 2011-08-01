@@ -24,7 +24,7 @@
 <script type='text/javascript' src='<?php echo APP_ROOT_URL; ?>static/js/cufon-yui.js?ver=3.1.4'></script>
 <script type='text/javascript' src='<?php echo APP_ROOT_URL; ?>static/js/Gotham_300-Gotham_400-Gotham_italic_300-Gotham_italic_400.font.js?ver=3.1.4'></script>
 
-<meta name="description" content="Melt: Web application framework optimized simplicity and freedom. Better code in less time. Written in PHP." />
+<meta name="description" content="Melt: Web application framework optimized for simplicity and freedom. Better code in less time. Written in PHP." />
 <meta name="keywords" content="melt framework, melt, meltphp, melt php, php framework, web app, web application, app development, coding, melt software, php framework" />
 
 
