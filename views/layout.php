@@ -74,7 +74,7 @@
   
   <p class="footer-follow">
 			<a id="follow-us-on-twitter" class="no-hover" href="http://www.twitter.com/meltframework"></a>
-			<a id="follow-us-on-facebook" class="no-hover" href="http://www.facebook.com/pages/Melt-Framework/232843960089743"></a>
+			<a id="follow-us-on-facebook" class="no-hover" href="http://www.facebook.com/meltframework"></a>
 		</p>
 		
     </div>
