@@ -30,16 +30,18 @@ a img {border:none;}
 h1, h2, h3, h4, h5, h6 {font-weight:bold;color:#635f64;text-transform:uppercase;}/*212121*/
 h1 {font-size:460%;font-weight:100;line-height:1;margin:1.2em 0 1.6em;padding:0;text-align:center;letter-spacing: -2px;}
 h1.title-page {text-align:left;margin-top:2em;}
+h1.smaller {font-size: 24px;}
 h2 {font-size:200%;margin:0.5em 0;border-bottom:1px solid #d0d0d0;padding-bottom:5px;}
-h2.subtitle {font-size:200%;text-align:center;border-bottom:none;}
+h2.subtitle {font-size:26px;text-align:center;border-bottom:none;}
 h2.like-this-framework {margin:2em 0;font-size:200%;text-align:center;border-bottom:none;}
-h2.big {font-size:370%;}
+h2.big {font-size:26px;}
 .features h2 {border-bottom:none;}
+.clear {clear: both;}
 
 h2.big-big {font-size:670%;text-align:center;border-bottom:none;}
 h2.big-big span {text-decoration:underline;}
 h2.premium span {color:#3693a7;}
-h3 {font-size:150%;text-transform:none;font-weight:normal;line-height:1.25;margin-bottom:0.75em;color:#4dbaff;padding:0 20px;}
+h3 {font-size:20px;text-transform:none;font-weight:normal;line-height:1.25;margin-bottom:0;color:#4dbaff;padding:0 20px;}
 h3.not-found {text-align:center;font-size:420%;text-transform:uppercase;color:#635f64;}
 ul.premium-features h3 {color:#0f5b6b;}
 .hentry h3,.hentry h1 {padding:0;}
@@ -130,7 +132,7 @@ a:active, a:hover {color:#408bc4;;text-decoration:underline; }
 /*************************************************************/
 /******************       MAIN LAYOUT       ******************/
 /*************************************************************/
-body {font-size:85%;font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',LucidaGrande,Geneva,Verdana,Arial,sans-serif;color:#555;background:#fff;}
+body {font-size:85%;font-family:'Lucida Grande','Lucida Sans Unicode','Lucida Sans',LucidaGrande,Geneva,Verdana,Arial,sans-serif;color:#555; background-color:#fff; }
 
 /*container*/
 .container {width:960px;margin:0 auto 30px;}
@@ -154,7 +156,7 @@ ul.actions a.small {
 }
 p.tinyText {
 color: #777;
-font-size: 11px;
+font-size: 14px;
 padding: 0em 0.5em 1em 0.5em;
 text-align: center;
 }
@@ -169,7 +171,7 @@ table.comparative td input.eStore_buy_now_button {background:url('../img/table/b
 
 /* features list */
 ul.features-list {margin:0;padding:0;list-style-type:none;font-size:85%;height:170px;}
-ul.features-list li {background:url('../img/icons/check.gif') no-repeat top left;margin:0 0 22px 0;padding:0 0 0 30px;height:26px;line-height:26px;float:left;width:162px;display:block;position:relative;}
+ul.features-list li {background:url('../img/check.png') no-repeat top left;margin:0 0 10px 0;padding:0 0 0 30px;height:26px;line-height:26px;float:left;width:162px;display:block;position:relative;}
 ul.features-list li:hover {cursor: pointer;}
 
 
@@ -187,7 +189,7 @@ ul.features-list span {
 /* features free */
 ul.features, ul.premium-features {margin:0;padding:0;list-style-type:none;}
 ul.features li, ul.premium-features li {float:left;width:480px;}
-ul.features li img, ul.premium-features li img {float:left;margin:0 15px 50px 0;padding:3px;border:1px solid #d4d5d5;}
+ul.features li img, ul.premium-features li img {float:left;margin:0 15px 10px 0;padding:3px;border:1px solid #d4d5d5;}
 ul.features li p, ul.premium-features li p {padding-right:20px;}
 ul.features.team li, ul.premium-features li {float:left;width:320px;}
 ul.features.team h3 {}
@@ -195,16 +197,20 @@ ul.features li img {
     border:0!important;
 }
 
+ul.small-images li img {
+    margin-bottom: 40px;
+}
 
 
 
 /* free bonus */
-.free-bonus {width:770px;margin:60px auto;padding:55px 35px;border:2px dashed #5f5b5f;}
-.free-bonus h2 {text-align:center;border-bottom:none;}
+.free-bonus {width:400px;margin:0; margin-bottom: 20px; padding:30px 30px 20px 30px;border:2px dashed #5f5b5f;float:left;}
+.bonus-right {margin-left: 20px;}
+.free-bonus h2 {text-align:center;border-bottom:none; font-size: 24px}
 .free-bonus img {display:block;margin:20px auto;}
 .free-bonus img.no-top-margin{margin:0px auto 20px auto;}
 .free-bonus ul {margin:40px 0;list-style-type:none;}
-.free-bonus li {background:url('../img/icons/check.gif') no-repeat top left;margin:11px 60px 11px 78px;padding:0 0 0 30px;line-height:26px;font-size:85%;}
+.free-bonus li {background:url('../img/check.png') no-repeat top left;margin:10px auto;padding:0 0 0 30px;line-height:26px;font-size:14px;}
 span.small-title {font-size:70%;}
 
 .license-agreement,.the-melt-story,.contact-melt {
@@ -374,5 +380,5 @@ text-indent: -45920px;
 #follow-us-on-twitter {background: url(../img/follow-us-on-twitter.png) 0px 0px; height: 20px; width: 67px; display: block; position: absolute; left: 50%; margin-left: -77px; top: 80px}
 #follow-us-on-facebook {background: url(../img/follow-us-on-facebook.png) 0px 0px; height: 20px; width: 67px; display: block; margin: 0 auto; position: absolute; left: 50%; margin-left: 10px; top: 80px}
 
-.socialmediabuttons {width:300px;margin:5px 0px 5px 360px}
+.socialmediabuttons {width:300px;margin:5px 0px 5px 340px}
 .socialmediabuttons .twitter-share-button {margin: 0px 10px -3px 10px}

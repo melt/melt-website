@@ -132,7 +132,7 @@ $(function() {
 <!-- START FEATURES -->
 <h2 class="big">Bundled <span>Happiness</span></h2>
 
-<ul class="features">
+<ul class="features small-images">
     <li>
         <img src="<?php echo APP_ROOT_URL; ?>static/img/integrations/jquery.png" alt="" />
         
@@ -162,13 +162,8 @@ $(function() {
 
 
 
-<h1>Built on the philosophy of <span>simplicity</span> and <span>freedom</span></h1>
+<h1 class="smaller">Built on the philosophy of <span>simplicity</span> and <span>freedom</span></h1>
 
-
-
-
-
-<?php echo $this->display("download"); ?>
 
 
 
@@ -192,8 +187,8 @@ $(function() {
 
   
 <!-- START HIGHLIGHT -->
-<div class="free-bonus">
-    <h2 class="big"><span>Bugs?</span><br/><span class="small-title">(or feature suggestions)</span></h2>
+<div class="free-bonus bonus-right">
+    <h2 class="big"><span>Bugs?</span> <span class="small-title">(or suggestions?)</span></h2>
         <h2 class="help">Submit your issues on</h2>
         <a href="https://github.com/melt/melt/issues/" target="_blank"><img class="no-top-margin" src="<?php echo APP_ROOT_URL; ?>static/img/github-logo.png" alt="" /></a>
            
@@ -210,7 +205,7 @@ $(function() {
 </div>
 <!-- END HIGHLIGHT -->
 
-
+<br class="clear" />
 
 
 
@@ -344,6 +339,5 @@ $(function() {
 <div class="clearer"></div>
 <!-- END FEATURES -->
 
-<?php echo $this->display("download"); ?>
 
 <!-- Testimonials, Screencasts -->
