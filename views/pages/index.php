@@ -188,7 +188,7 @@ $(function() {
   
 <!-- START HIGHLIGHT -->
 <div class="free-bonus bonus-right">
-    <h2 class="big"><span>Bugs?</span> <span class="small-title">(or suggestions?)</span></h2>
+    <h2 class="big"><span>Bugs?</span> <span class="small-title"></span></h2>
         <h2 class="help">Submit your issues on</h2>
         <a href="https://github.com/melt/melt/issues/" target="_blank"><img class="no-top-margin" src="<?php echo APP_ROOT_URL; ?>static/img/github-logo.png" alt="" /></a>
            
