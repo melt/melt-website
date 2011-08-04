@@ -219,7 +219,7 @@ $(function() {
         <h3>Get Started with Melt</h3>
         
         <p>
-            <a href="https://github.com/melt/melt/wiki/Getting-Started-with-Melt" target="_blank">Get started with Melt</a> with the getting started guide. Everything you need to know to install Melt and create your first application!         
+            <a href="https://github.com/melt/melt/wiki/Getting-Started-with-Melt" target="_blank">Get started with Melt</a> on your coffee break. The getting started guide walks you through how to install Melt and build your first app.         
             
         </p>
     </li>
@@ -296,9 +296,9 @@ $(function() {
         
         <h3>Make Tutorials & Screencasts</h3>
         
-        <p>
-           <a href="http://vimeo.com/tag:meltcast" target="_blank">Publish a screencast on Vimeo</a> and tag it with <strong>meltcast</strong> or
-           write a blogpost and <a href="<?php echo APP_ROOT_URL; ?>team#contact">send us the link</a> to include it in the list of tutorials.      
+        <p>            
+           <a href="http://www.youtube.com/results?search_query=meltcast&search=tag" target="_blank">Publish a screencast on YouTube</a> and tag it <strong>meltcast</strong> 
+           to make it show up in the official screencasts.      
         </p>
     </li>
     
