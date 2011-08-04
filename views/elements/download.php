@@ -4,7 +4,7 @@
 <ul class="actions">
         
     <li><a class="green button" href="http://github.com/melt/melt">Download Melt<span>Completely free, BSD License</span></a></li>
-    <p class="tinyText">Version 1.0 released August 1st, 2011. Requires PHP 5.3 & MySQL.</p>
+    <p class="tinyText"><?php if(isset($this->version)): ?>Version <?php echo $this->version; ?> released <?php echo $this->pushed_at; ?>.<?php endif; ?>Requires PHP 5.3 & MySQL.</p>
         
 </ul>
 <div class="socialmediabuttons">

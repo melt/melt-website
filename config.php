@@ -10,10 +10,7 @@
  * so don't be suprised when it starts editing itself.
  */
 
-namespace melt\internal {
-    /** Pass the names of non core modules to include to this function. */
-    modules_using();
-}
+
 
 namespace melt\core\config {
     const CONSOLE_MOTD = 'Greetings. Welcome to Melt framework. We hope you enjoy this unix-ish console. Run "install" if you have not done so yet!';
@@ -37,14 +34,14 @@ namespace melt\core\config {
 
 
 namespace melt\db\config {
-    const STORAGE_ENGINE = 'innodb';
+    const PASSWORD = '8bddbbeab8799416';
     const USE_TRIGGER_SEQUENCING = true;
+    const PORT = 3306;
+    const USER = 'u10006_meltwb';
+    const HOST = '127.0.0.1';
+    const STORAGE_ENGINE = 'innodb';
     const PREFIX = '';
     const NAME = 'u10006_meltwb';
-    const PASSWORD = '8bddbbeab8799416';
-    const USER = 'u10006_meltwb';
-    const PORT = 3306;
-    const HOST = '127.0.0.1';
     const REQUEST_LEVEL_TRANSACTIONALITY = true;
     const DEBUG_QUERY_BENCHMARK = false;
 }

@@ -68,15 +68,15 @@
                 tokens.push("");
             return [tokens, trailing_space];
         };
-	var read_file_binary_fn = function(file, callback) {
+	var read_file_text_fn = function(file, callback) {
             if ("FileReader" in window) {
                 var reader = new FileReader();
-                reader.readAsBinaryString(file);
+                reader.readAsText(file, "UTF-8");
                 reader.onload = function() {
                     callback(reader.result);
                 };
             } else {
-                return callback(file.getAsBinary());
+                return callback(file.getAsText("UTF-8"));
             }
 	};
         var get_file_upload_body_fn = function(event, expected_length, component_name, complete_fn) {
@@ -91,11 +91,11 @@
             for (var i = 0; i < data.files.length; i++)
                 files.push(data.files[i]);
             var loaded_files = 0;
-            var binary_file_data = new Array(files.length);
+            var text_file_data = new Array(files.length);
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                read_file_binary_fn(file, function(position) { return function(binary_data) {
-                    binary_file_data[position] = binary_data;
+                read_file_text_fn(file, function(position) { return function(text_data) {
+                    text_file_data[position] = text_data;
                     loaded_files++;
                     if (loaded_files === files.length) {
                         var boundary = '------multipartformboundary' + (new Date).getTime();
@@ -117,8 +117,8 @@
                             body += 'Content-Type: application/octet-stream';
                             body += crlf;
                             body += crlf;
-                            /* Append binary data. */
-                            body += binary_file_data[i];
+                            /* Append text data. */
+                            body += text_file_data[i];
                             body += crlf;
                             /* Write boundary. */
                             body += dashdash;
@@ -155,8 +155,8 @@
                 config_names = sync_get_fn("config_get_all");
             return config_names;
         };
-        var get_objects_fn = function(object, app) {
-            var objects = sync_get_fn("cmd_obj/" + object, app? {"app": "true"}: {});
+        var get_tokens_fn = function(path, get_params) {
+            var objects = sync_get_fn(path, get_params);
             var ret = {};
             $.each(objects.split(/\s+/), function(i, obj) {
                 if (obj == "")
@@ -164,6 +164,9 @@
                 ret[obj] = true;
             });
             return ret;
+        };
+        var get_objects_fn = function(object, app) {
+            return get_tokens_fn("cmd_obj/" + object, app? {"app": "true"}: {});
         };
         var cmd_line_init = "melt>";
         var obj_app_tree_fn = function(app, cat) {
@@ -201,10 +204,20 @@
             "install": true,
             "reload": true,
             "logout": true,
-            "lconfig": get_configs_names_fn,
             "config": get_configs_names_fn,
             "app": obj_app_tree_fn(true),
-            "sys": obj_app_tree_fn(false)
+            "sys": obj_app_tree_fn(false),
+            "versions": true,
+            "ghd": {
+                "deploy-core": true,
+                "deploy-module": {
+                    "melt/module-data-tables": true
+                },
+                "deploy-sample-app": {
+                    "melt/sample-app-default": true,
+                    "melt/sample-app-facebook": true
+                }
+            }
         };
         var color_command = "#8e8";
         var color_output = "#ddd"
@@ -337,9 +350,14 @@
             };
             query_password_fn();
         };
-        var yes_eval_fn = function(input) {
-            return $.trim(input).substr(0, 1) == "y"
-            || $.trim(input).substr(0, 1) == "Y";
+        var yes_eval_fn = function(input, default_yes) {
+            input = $.trim(input);
+            if (input == "") {
+                return default_yes == true;
+            } else {
+                return input.substr(0, 1) == "y"
+                || input.substr(0, 1) == "Y";
+            }
         };
         var exec_ajax_fn = function(url, done_fn, data) {
             var response_offset = 0;
@@ -376,13 +394,21 @@
             };
             xhr.send();
         };
-        var exec_fn = function(current_cmd) {
+        var exec_fn = function(current_cmd, exec_done_fn) {
             var complete_fn = function() {
-                input_pipe = false;
-                input_div.show();
-                update_cmd_line_fn("");
+                if (exec_done_fn !== undefined)
+                    exec_done_fn();
             };
-            input_pipe = function() {};
+            if (input_pipe === false) {
+                complete_fn = function() {
+                    input_pipe = false;
+                    input_div.show();
+                    update_cmd_line_fn("");
+                    if (exec_done_fn !== undefined)
+                        exec_done_fn();
+                };
+                input_pipe = function() {};
+            };
             print_fn(cmd_line_init + current_cmd + "\n", color_command);
             input_div.hide();
             if (cmd_history[cmd_history.length - 1] !== current_cmd) {
@@ -432,6 +458,49 @@
                 }
                 exec_ajax_fn(console_base + "/cmd_obj/" + cmd_tokens[1], complete_fn, get_data);
                 break;
+            case "ghd":
+                switch (cmd_tokens[1]) {
+                case "deploy-core":
+                case "deploy-module":
+                case "deploy-sample-app":
+                    var path, warning_msg;
+                    if (cmd_tokens[1] === "deploy-sample-app") {
+                        path = "cmd_ghd_deploy_sample_app";
+                        warning_msg = "This will overwrite any existing application data.";
+                    } else if (cmd_tokens[1] == "deploy-module") {
+                        path = "cmd_ghd_deploy_module";
+                        warning_msg = "This will overwrite any existing module.";
+                    } else {
+                        path = "cmd_ghd_deploy_core";
+                        warning_msg = "WARNING: You are about to redeploy the core. Upgrading the core could break compatibility in your application. If this fails the console might be rendered unusable and you will have to redeploy manually.";
+                        cmd_tokens[2] = cmd_tokens[2] === undefined? "": cmd_tokens[2];
+                    }
+                    if (cmd_tokens[2] === undefined) {
+                        exec_ajax_fn(console_base + "/" + path, complete_fn);
+                        return;
+                    }
+                    var deploy_fn = function(input) {
+                        if (yes_eval_fn(input, false)) {
+                            exec_ajax_fn(console_base + "/" + path + "/" + cmd_tokens[2], complete_fn);
+                        } else {
+                            complete_fn();
+                        }
+                    };
+                    if (cmd_tokens[2].substr(cmd_tokens[2].length - 1) !== "*") {
+                        print_fn(warning_msg + "\nReally continue? [N/y]:");
+                        input_fn(deploy_fn);
+                    } else {
+                        deploy_fn("y");
+                    }
+                    break;
+                default:
+                    print_fn("Action missing.\n");
+                    complete_fn();
+                }
+                break;
+            case "versions":
+                exec_ajax_fn(console_base + "/cmd_versions", complete_fn);
+                break;
             case "db":
                 switch (cmd_tokens[1]) {
                 case "sync":
@@ -440,7 +509,7 @@
                 case "purify":
                     print_fn("Important data could be deleted. Really continue? [y/N]:");
                     input_fn(function(input) {
-                        if (yes_eval_fn(input)) {
+                        if (yes_eval_fn(input, false)) {
                             exec_ajax_fn(console_base + "/cmd_purify", complete_fn);
                         } else {
                             complete_fn();
@@ -499,7 +568,6 @@
                 window.open(console_base + "/cmd_info");
                 complete_fn();
                 break;
-            case "lconfig":
             case "config":
                 if (cmd_tokens[1] === undefined) {
                     print_fn("Missing argument 1: module name\n");
@@ -514,7 +582,7 @@
                 } else {
                     var param = {
                         set: cmd_tokens[3],
-                        local: cmd_tokens[0] === "lconfig"? "true": "false"
+                        local: "false"
                     };
                     exec_ajax_fn(console_base + "/cmd_config/" + cmd_tokens[1] + "/" + cmd_tokens[2], complete_fn, param);
                 }
@@ -529,27 +597,100 @@
                 break;
             case "install":
                 print_fn("Welcome to the melt (re)installation script. Melt needs a working MySQL 5.1+ database to function. Remember that you can use your normal copy/paste hotkeys.\n");
-                mass_input_fn([
-                    ["Database host", "127.0.0.1"],
-                    ["Database port", "3306"],
-                    ["Database username", "root"],
-                    ["Database password", ""],
-                    ["Database name", "melt"],
-                    ["Database prefix", ""],
-                    ["Do you have trigger permissions?", "Y/n"],
-                    ["Do you have InnoDB?", "Y/n"]
-                ], function(result) {
-                    print_fn("Configuring your installation, please wait.\n");
-                    exec_fn("config db host " + cmd_line_escape_fn(result[0]));
-                    exec_fn("config db port " + cmd_line_escape_fn(result[1]));
-                    exec_fn("config db user " + cmd_line_escape_fn(result[2]));
-                    exec_fn("config db password " + cmd_line_escape_fn(result[3]));
-                    exec_fn("config db name " + cmd_line_escape_fn(result[4]));
-                    exec_fn("config db prefix " + cmd_line_escape_fn(result[5]));
-                    exec_fn("config db use_trigger_sequencing " + cmd_line_escape_fn(yes_eval_fn(result[6])? "true": "false"));
-                    exec_fn("config db storage_engine " + cmd_line_escape_fn(yes_eval_fn(result[7])? "innodb": "myisam"));
-                    print_fn("Database configuration complete. Please run the \"db sync\" command to check your settings and start using your database.\n");
+                var configure_db_fn = function(done_fn) {
+                    print_fn("Do you wish to configure your MySQL details? [Y/n]");
+                    input_fn(function(result) {
+                        if (!yes_eval_fn(result, true)) {
+                            done_fn();
+                        } else {
+                            mass_input_fn([
+                                ["Database host", "127.0.0.1"],
+                                ["Database port", "3306"],
+                                ["Database username", "root"],
+                                ["Database password", ""],
+                                ["Database name", "melt"],
+                                ["Database prefix", ""],
+                                ["Do you have trigger permissions?", "Y/n"],
+                                ["Do you have InnoDB?", "Y/n"]
+                            ], function(result) {
+                                print_fn("Configuring your installation, please wait.\n");
+                                exec_fn("config db host " + cmd_line_escape_fn(result[0]));
+                                exec_fn("config db port " + cmd_line_escape_fn(result[1]));
+                                exec_fn("config db user " + cmd_line_escape_fn(result[2]));
+                                exec_fn("config db password " + cmd_line_escape_fn(result[3]));
+                                exec_fn("config db name " + cmd_line_escape_fn(result[4]));
+                                exec_fn("config db prefix " + cmd_line_escape_fn(result[5]));
+                                exec_fn("config db use_trigger_sequencing " + cmd_line_escape_fn(yes_eval_fn(result[6])? "true": "false"));
+                                exec_fn("config db storage_engine " + cmd_line_escape_fn(yes_eval_fn(result[7])? "innodb": "myisam"));
+                                done_fn();
+                            });
+                        }
+                    });
+                };
+                var configure_mail_fn = function(done_fn) {
+                    print_fn("Do you wish to configure your SMTP details? (Skip if your application won't send mail.) [Y/n]");
+                    input_fn(function(result) {
+                        if (!yes_eval_fn(result, true)) {
+                            done_fn();
+                        } else {
+                            mass_input_fn([
+                                ["SMTP name", "127.0.0.1"],
+                                ["SMTP port", "3306"],
+                                ["Does the SMTP server require TLS?", "N/y"],
+                                ["Does the SMTP server require authentication?", "Y/n"],
+                            ], function(result) {
+                                exec_fn("config mail smtp_host " + cmd_line_escape_fn(result[0]));
+                                exec_fn("config mail smtp_port " + cmd_line_escape_fn(result[1]));
+                                exec_fn("config mail smtp_tls_enable " + cmd_line_escape_fn(yes_eval_fn(result[2])? "true": "false"));
+                                exec_fn("config mail smtp_auth_enable " + cmd_line_escape_fn(yes_eval_fn(result[3])? "true": "false"));
+                                if (yes_eval_fn(result[3])) {
+                                    mass_input_fn([
+                                        ["SMTP authentication username", ""],
+                                        ["SMTP authentication password", ""],
+                                    ], function(result) {
+                                        exec_fn("config mail smtp_auth_user " + cmd_line_escape_fn(result[0]));
+                                        exec_fn("config mail smtp_auth_password " + cmd_line_escape_fn(result[1]));
+                                        done_fn();
+                                    });
+                                } else {
+                                    done_fn();
+                                }
+                            });
+                        }
+                    });
+                };
+                var configure_app_fn = function(done_fn) {
+                    print_fn("Do you wish to deploy the default sample application? (Skip if you already have an application installed.) [Y/n]");
+                    input_fn(function(result) {
+                        if (yes_eval_fn(result, true)) {
+                            exec_fn("ghd deploy-sample-app melt/sample-app-default", done_fn);
+                        } else {
+                            done_fn();
+                        }
+                    });
+                };
+                var sync_db_fn = function(done_fn) {
+                    print_fn("Do you wish to syncronize the database with the application now? [Y/n]");
+                    input_fn(function(result) {
+                        if (yes_eval_fn(result, true)) {
+                            exec_fn("db sync", done_fn);
+                        } else {
+                            done_fn();
+                        }
+                    });
+                };
+                var done_fn = function() {
+                    print_fn("Installation script complete.\n");
                     complete_fn();
+                };
+                configure_db_fn(function() {
+                    configure_mail_fn(function() {
+                        configure_app_fn(function() {
+                            sync_db_fn(function() {
+                                done_fn();
+                            });
+                        });
+                    });
                 });
                 break;
             case "reload":

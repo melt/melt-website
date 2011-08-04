@@ -7,6 +7,10 @@ class ConsoleController extends InternalController {
         parent::beforeRender($action_name, $arguments);
         if ($action_name !== "index" && !APP_IN_DEVELOPER_MODE)
             \melt\request\show_xyz(403);
+        // Make sure http timeout is reasonable.
+        stream_context_set_default(array(
+            "http" => array("timeout" => 20)
+        ));
     }
 
     public function index() {
@@ -32,7 +36,6 @@ class ConsoleController extends InternalController {
         \header('Content-Type: text/plain; charset=UTF-8');
         \ob_end_clean();
         \ob_end_clean();
-        \ob_start('ob_gzhandler');
         \ob_implicit_flush(true);
         \error_reporting(\E_USER_ERROR | \E_ERROR | \E_CORE_ERROR | \E_COMPILE_ERROR);
         \ob_flush();
@@ -85,7 +88,7 @@ class ConsoleController extends InternalController {
                 $print_directive($config_var_name, $config_directives[$config_var_name]);
             } else {
                 $new_value = $_GET["set"];
-                $local = @$_GET["local"] === "true";
+                //$local = @$_GET["local"] === "true";
                 if (\strcasecmp($new_value, "true") === 0)
                     $new_value = true;
                 else if (\strcasecmp($new_value, "false") === 0)
@@ -96,7 +99,7 @@ class ConsoleController extends InternalController {
                     $new_value = (float) $new_value;
                 else
                     $new_value = (string) $new_value;
-                \melt\internal\put_configuration_directive("melt\\$module_name\\config\\$config_var_name", $new_value, true, $local);
+                \melt\internal\put_configuration_directive("melt\\$module_name\\config\\$config_var_name", $new_value, true, true);
             }
         }
         exit;
@@ -140,7 +143,7 @@ class ConsoleController extends InternalController {
                 chdir(APP_DIR . "/views");
                 foreach ($view_tokens as $i => $view_token) {
                     if ($i === count($view_tokens) - 1) {
-                        if (!copy(APP_DIR . "/core/scaffolding/views/generic.php", $view_token . ".php"))
+                        if (!copy(APP_DIR . "/core/modules/core/files/generic-view.php", $view_token . ".php"))
                             die("Failed to copy generic.php from scaffolding to target directory.\n");
                         break;
                     } else if (!is_dir($view_token)) {
@@ -153,10 +156,11 @@ class ConsoleController extends InternalController {
             } else {
                 if (!\preg_match('/([a-z]+[a-z0-9]*)(_[a-z]+[a-z0-9]*)*/', $name))
                     die("Invalid name. For example, supply \"object_name\" to create the class ObjectName.\n");
-                $suffix = $class !== null? "_" . substr($type, 0, -1): "";
+                $type1 = substr($type, 0, -1);
+                $suffix = $class !== null? "_" . $type1: "";
                 $file_name = "$name$suffix.php";
                 $class_name = \melt\string\underline_to_cased($name);
-                $file_data = file_get_contents(APP_DIR . "/core/scaffolding/$type/generic.php");
+                $file_data = file_get_contents(APP_DIR . "/core/modules/core/files/generic-$type1.php");
                 if ($file_data === false)
                     die("Failed to read generic.php from scaffolding.\n");
                 $file_data = str_replace("__template_class_name", $class_name, $file_data);
@@ -165,7 +169,7 @@ class ConsoleController extends InternalController {
                     die("Object at $out_path already exists!\n");
                 if (file_put_contents($out_path, $file_data) === false)
                     die("Failed to write $out_path\n");
-                die(($suffix !== ""? ucfirst(substr($type, 0, -1)): "Class") . " was successfully created at /$type/$file_name\n");
+                die(($suffix !== ""? ucfirst($type1): "Class") . " was successfully created at /$type/$file_name\n");
             }
         }        
         $identifier_is_acceptable_fn = function($identifier) use ($app_only) {
@@ -310,7 +314,185 @@ class ConsoleController extends InternalController {
         }
         exit;
     }
+        
+    private function downloadFile($remote_url, $local_path) {
+        echo "Downloading \"$remote_url\" to \"$local_path\"...\n";
+        $h_remote = fopen($remote_url, "r");
+        if (!is_resource($h_remote))
+            die("Error: Could not open $remote_url\n");
+        $h_local = fopen($local_path, "w+");
+        if (!is_resource($h_local))
+            die("Error: Could not open \"$local_path\" for writing.\n");
+        stream_copy_to_stream($h_remote, $h_local);
+        fclose($h_remote);
+        fclose($h_local);
+    }
+    
+    private function ghDeploy($user, $repo, &$target_tag, $repo_description_tag, $prepare_fn) {
+        // Get repository info.
+        $repo_info = @file_get_contents("https://api.github.com/repos/$user/$repo");
+        if ($repo_info === false)
+            die("Error: Specified repository not found (or not tagged).\n");
+        $repo_info = json_decode($repo_info);
+        if (strpos($repo_info->description, $repo_description_tag) === false)
+            die("Error: Did not find $repo_description_tag in repo description. The repository is not a valid target.\n");
+        $tags_info = @file_get_contents("https://api.github.com/repos/$user/$repo/tags");
+        if ($tags_info === false)
+            die("Error: Specified repository not found (or not tagged).\n");
+        $tags_info = json_decode($tags_info);
+        if (count($tags_info) === 0)
+            die("Error: Specified repository does not have any tags.\n");
+        $tags_index = array();
+        foreach ($tags_info as $tag_info)
+            $tags_index[$tag_info->name] = $tag_info;
+        if ($target_tag !== null && !isset($target_tag[$target_tag]))
+            die("Error: Specified tag/version does not exist in repository.\n");
+        uksort($tags_index, function($v1, $v2) {
+            return strnatcasecmp($v2, $v1);
+        });
+        if (\melt\string\ends_with((string) $target_tag, "*")) {
+            echo "All tags in repository:\n";
+            foreach ($tags_index as $tag => $tag_info)
+                echo "$tag ";
+            die("\n");
+        }
+        $prepare_fn();
+        reset($tags_index);
+        $target_tag = $target_tag !== null? $target_tag: key($tags_index);
+        $tag_info = $tags_index[$target_tag];
+        $local_path = APP_DIR . "/ghd-deploy-tmp.tar.gz";
+        if (is_file($local_path)) {
+            if (!@unlink($local_path))
+                die("Could not delete $local_path!\n");
+        }
+        $this->downloadFile($tag_info->tarball_url, $local_path);
+        return $local_path;
+    }
+    
+    private function ghSearch($name, $prefix) {
+        // Get sample repositories.
+        $repos = @file_get_contents("https://api.github.com/users/melt/repos");
+        if ($repos === false)
+            die("Error: Unable to search for $name.\n");
+        $repos = json_decode($repos);
+        if (!is_array($repos))
+            die("Error: Unexpected data returned. Expected array.\n");
+        echo "Availible $name:\n";
+        foreach ($repos as $repo) {
+            if (strpos($repo->name, $prefix) !== false)
+               echo "{$repo->owner->login}/$repo->name\n";
+        }
+        die("\n");
+    }
+    
+    private function ghGetInternalPath(ArchiveTar $archive, $user, $repo) {
+        $internal_path = null;
+        foreach ($archive->listContent() as $path) {
+            $prefix = "$user-$repo";
+            if (\melt\string\starts_with($path["filename"], $prefix)) {
+                $internal_path = preg_replace('#([/][^/]*)*$#', '', $path["filename"]);
+                break;
+            }
+        }
+        if ($internal_path === null)
+            die("Could not find internal path in archive!\n");
+        return $internal_path;
+    }
+    
+    public function cmd_ghd_deploy_core($target_tag = null) {
+        $this->beginExec();
+        $user = $repo = "melt";
+        // Hack: Since this class will be deleted when core is deleted we need to make sure it's loaded now.
+        class_exists('melt\core\ArchiveTar');
+        $archive_path = $this->ghDeploy($user, $repo, $target_tag, "#melt", function() {
+            echo "Deleting melt core...\n";
+            unlink_recursive(APP_CORE_DIR);
+        });
+        $archive = new ArchiveTar($archive_path);
+        echo "Extracting...\n";
+        $internal_path = $this->ghGetInternalPath($archive, $user, $repo);
+        $archive->extract(APP_DIR . "/");
+        @unlink($archive_path);
+        if (rename(APP_DIR . "/$internal_path/core", APP_DIR . "/core") === false)
+            die("Could not rename /$internal_path/core module folder to /core.");
+        unlink_recursive(APP_DIR . "/$internal_path", function() {});
+        die("Melt core $target_tag was successfully deployed. Please reload the console now by typing \"reload\".\n");        
+    }
+    
+    public function cmd_ghd_deploy_module($user = null, $repo = null, $target_tag = null) {
+        $this->beginExec();
+        if ($user === null) {
+            $this->ghSearch("melt modules", "module-");
+        } else {
+            $offset = strrpos($repo, "module-");
+            if ($offset === false)
+                die("The specified repository does not contain the keyword \"module-\$module_name\"0.\n");
+            $module_name = str_replace("-", "_", strtolower(substr($repo, $offset + strlen("module-"))));
+            $modules_path = APP_DIR . "/modules";
+            $module_path = "$modules_path/$module_name";
+            echo "Deploying module \"$module_name\"...\n";
+            $archive_path = $this->ghDeploy($user, $repo, $target_tag, "#melt-module", function() use ($module_name, $module_path) {
+                echo "Deleting existing \"$module_name\" files...\n";
+                if (file_exists($module_path))
+                    unlink_recursive($module_path);
+            });
+            $archive = new ArchiveTar($archive_path);
+            echo "Extracting...\n";
+            $internal_path = $this->ghGetInternalPath($archive, $user, $repo);
+            @mkdir($modules_path);
+            $archive->extract($modules_path);
+            @unlink($archive_path);
+            @unlink("$modules_path/pax_global_header");
+            @unlink("$modules_path/.gitignore");
+            if (rename("$modules_path/$internal_path", $module_path) === false)
+                die("Could not rename $internal_path module folder to $module_name.");
+            die("Module \"$module_name $target_tag\" by \"$user\" was successfully deployed.\n");
+        }
+    }
+    
+    public function cmd_ghd_deploy_sample_app($user = null, $repo = null, $target_tag = null) {
+        $this->beginExec();
+        if ($user === null) {
+            $this->ghSearch("melt sample applications", "sample-app-");
+        } else {
+            $archive_path = $this->ghDeploy($user, $repo, $target_tag, "#melt-app", function() {
+                echo "Deleting application files...\n";
+                $skip_delete = array("core", "config.local.php", ".htaccess");
+                foreach (scandir(APP_DIR) as $node) {
+                    if ($node[0] === "." || in_array($node, $skip_delete))
+                        continue;
+                    unlink_recursive(APP_DIR . "/$node");
+                    echo "removed $node\n";
+                }
+            });
+            $archive = new ArchiveTar($archive_path);
+            echo "Extracting...\n";
+            $internal_path = $this->ghGetInternalPath($archive, $user, $repo);
+            $archive->extractModify(APP_DIR . "/", $internal_path);
+            @unlink($archive_path);
+            @unlink(APP_DIR . "/pax_global_header");
+            @unlink(APP_DIR . "/.gitignore");
+            die("Sample project \"$repo $target_tag\" by \"$user\" was successfully deployed.\n");
+        }
+    }
 
+    public function cmd_versions() {
+        $this->beginExec();
+        echo "melt core: " . \melt\internal\VERSION . "\n";
+        echo "**non-core modules**\n";
+        $total = 0;
+        foreach (get_all_modules() as $name => $module) {
+            list($class, $file_path) = $module;
+            if (is($class, 'melt\CoreModule'))
+                continue;
+            echo "$name: " . $class::getVersion() . "\n";
+            $total++;
+        }
+        if ($total === 0)
+            echo "none.\n";
+        exit;
+    }
+    
     public function cmd_info() {
         \phpinfo();
         exit;

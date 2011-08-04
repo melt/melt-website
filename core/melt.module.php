@@ -48,6 +48,18 @@ abstract class Module {
      * No special syntax required. Basic inline HTML is recommended in output.
      */
     public abstract static function getInfo();
+    
+    /**
+     * If this module uses a git hub repository it can announce the path
+     * to that repository here to enable command line upgrading.
+     * Should return an array of array($USERNAME, $REPONAME),
+     * e.g.: array("melt", "melt.git")
+     * Otherwise, it should return null.
+     * @return array
+     */
+    public static function getGhRepository() {
+        return null;
+    }
 }
 
 /**
@@ -56,7 +68,7 @@ abstract class Module {
 abstract class CoreModule extends Module {
     public static function getAuthor() {
         $year = date("Y");
-        return "Hannes Landeholm, Omnicloud AB, ©$year";
+        return "Hannes Landeholm, Melt Software AB, ©$year";
     }
 
     public static function getInfo() {
@@ -65,7 +77,7 @@ abstract class CoreModule extends Module {
     }
 
     public static function getVersion() {
-        return melt\VERSION;
+        return internal\VERSION;
     }
 }
 

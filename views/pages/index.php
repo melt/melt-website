@@ -1,6 +1,6 @@
 <?php namespace melt; ?>
 
-<?php echo $this->display("download"); ?>
+<?php echo $this->display("download",array("version"=>$this->version,"pushed_at"=>$this->pushed_at)); ?>
 
 <script type='text/javascript'>
 $(function() {
@@ -19,7 +19,6 @@ $(function() {
 );
     });
 </script> 
-
 
 <!-- START FEATURES LIST -->
 <h2></h2>
@@ -188,7 +187,7 @@ $(function() {
   
 <!-- START HIGHLIGHT -->
 <div class="free-bonus bonus-right">
-    <h2 class="big"><span>Bugs?</span> <span class="small-title"></span></h2>
+    <h2 class="big"><span>Found Bugs?</span> <span class="small-title"></span></h2>
         <h2 class="help">Submit your issues on</h2>
         <a href="https://github.com/melt/melt/issues/" target="_blank"><img class="no-top-margin" src="<?php echo APP_ROOT_URL; ?>static/img/github-logo.png" alt="" /></a>
            
