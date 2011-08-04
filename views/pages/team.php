@@ -11,8 +11,9 @@
     </p>
     <p>
       The new framework had a mission: keep complexity to a minimum.
-      Dozens and dozens of projects would be powered by Melt in the years to come.        
-      In July 2011 the Melt framework was released to the public under a BSD License. Since then, the northern light has been shared with the world.    
+      Dozens and dozens of projects would be powered by Melt in the years to come. 
+      In August 2011 the Melt team open-sourced the framework and made it publicly available.
+      Since then, the northern light has been shared with the world.    
     </p>
     
    
