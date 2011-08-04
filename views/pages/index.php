@@ -301,7 +301,7 @@ $(function() {
         <h3>Make Tutorials & Screencasts</h3>
         
         <p>            
-           <a href="http://www.youtube.com/results?search_query=meltcast&search=tag" target="_blank">Publish a screencast on YouTube</a> and tag it <strong>meltcast</strong> 
+           <a href="http://www.youtube.com/results?search_query=meltframework&search=tag" target="_blank">Publish a screencast on YouTube</a> and tag it <strong>meltframework</strong> 
            to make it show up in the official screencasts.      
         </p>
     </li>
