@@ -271,7 +271,6 @@ $(function() {
         <img src="<?php echo APP_ROOT_URL; ?>static/img/community/contribute-to-melt.png" alt="" />
         
         <h3>Contribute to Melt</h3>
-        
         <p>
             <a href="http://github.com/melt/" target="_blank">Make your own fork of Melt on GitHub</a> and contribute to the official release. Write modules and sample apps and share them with others.        
         </p>

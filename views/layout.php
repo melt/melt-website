@@ -51,13 +51,8 @@
         
 
     <div id="footer">
-    <?php /*
-        <div class="menu-footer"><ul id="menu-footer" class="menu"><li id="menu-item-59" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2 current_page_item menu-item-59"><a href="index.html">Home</a></li>
-        <li id="menu-item-10" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10"><a href="terms-and-conditions/index.html">License</a></li>
-<li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44"><a href="http://stackoverflow.com/questions/tagged/melt">Team & Contributors</a></li>
-</ul></div>  -->    
-        
-       */ ?>
+    
+      
       
 
                                 <!-- <h2 class="like-this-framework">We really think <span>you will like</span> this framework</h2> -->
@@ -76,7 +71,16 @@
 			<a id="follow-us-on-twitter" class="no-hover" href="http://www.twitter.com/meltframework"></a>
 			<a id="follow-us-on-facebook" class="no-hover" href="http://www.facebook.com/meltframework"></a>
 		</p>
-		
+	
+  
+  
+    <div class="menu-footer">
+        <ul id="menu-footer" class="menu">
+            <li id="menu-item-59" class="menu-item"><a href="https://github.com/melt/melt">Download</a></li> -
+        <li id="menu-item-10" class="menu-item"><a href="https://github.com/melt/melt/wiki">Documentation</a></li> -
+            <li id="menu-item-44" class="menu-item"><a href="https://github.com/melt/melt/issues">Bugs & Issues</a></li>
+        </ul>
+    </div>
     </div>
 
 

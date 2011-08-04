@@ -15,7 +15,7 @@ class PagesController extends AppController {
         $this->buffer = json_decode(curl_exec($ch),true);
         return date( "F jS, Y", time($this->buffer["repository"]["pushed_at"]) );
         // Close handle 
-        curl_close($ch);         
+        curl_close($ch);     
     }
     
     private function getMeltVersion() {
