@@ -6,13 +6,13 @@
       Melt was born on a cold autumn day of 2009. The sky was cloudy and 
       the first autumn leaves had fallen from the trees covering the frostbitten ground in a golden carpet.
       The Melt team was working on one of their consulting projects - business as usual - 
-      but this day they suddenly had enough of hacking lousy web frameworks and thought "heck, why not do this on our own?"     
+      but this day they suddenly had enough of hacking lousy web frameworks and thought "heck, why not do this on our own?".
+      <b>And so, Melt was born.</b>
     </p>
     <p>
-      The vision of the new framework was to avoid code duplication and allow low complexity and easy refactoring even as the application grows in size.
-      <!-- and then in addition inherit best practices and properties from other frameworks. -->
-      The team used Melt heavily to power dozens and dozens of web apps for their clients.          
-      In July 2011 the framework was released to the public under a BSD License and since then the excitement has been shared with the world.    
+      The new framework had a mission: keep complexity to a minimum.
+      Dozens and dozens of projects would be powered by Melt in the years to come.        
+      In July 2011 the Melt framework was released to the public under a BSD License. Since then, the northern light has been shared with the world.    
     </p>
     
    
@@ -80,3 +80,11 @@
 
 <div class="clearer"></div>
 <!-- END FEATURES -->
+
+
+<div class="the-melt-story">
+    
+    <p>
+        <em>Bring the cold, cold water, from the dark, dark well, to the warm hearth fire, when the ice begins to melt.</em>
+    </p>
+</div>
