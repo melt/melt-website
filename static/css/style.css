@@ -230,6 +230,7 @@ img.logo-footer {vertical-align:middle;}
 /*footer link*/
 #footer a:link, #footer a:visited {color:#555;}
 #footer a {text-decoration:none;}/*626063*/
+#footer a:hover {border-bottom:1px solid #555;}
 #footer .copyright a {border-bottom:1px solid #555;}
 /*end footer*/
 #footer a.no-hover {border-bottom:none;}
