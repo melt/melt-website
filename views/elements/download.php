@@ -3,7 +3,7 @@
 <!-- START CALL TO ACTIONS -->
 <ul class="actions">
     <li><a class="green button" href="http://github.com/melt/melt">Download Melt<span>Completely free, BSD License</span></a></li>
-    <p class="tinyText">Version 1.2 released August 4th, 2011. Requires PHP 5.3 & MySQL.</p>
+    <p class="tinyText">Version <?php echo escape($this->version); ?> released <?php echo escape($this->pushed_at->format("F jS, Y")); ?>. Requires PHP 5.3 & MySQL.</p>
 </ul>
 <div class="socialmediabuttons">
 	<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
