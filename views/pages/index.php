@@ -1,9 +1,9 @@
 <?php namespace melt; ?>
-
+<?php /*
 <div style="text-align: center;margin:0 auto;">
     <iframe class="getting-started" width="440" height="278" src="http://www.youtube.com/embed/DiU21H4-gPY?hd=1&rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-
+*/ ?>
 <?php echo $this->display("download"); ?>
 
 <script type='text/javascript'>
