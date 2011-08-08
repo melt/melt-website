@@ -291,7 +291,7 @@ $(function() {
 
 
 <!-- START FEATURES -->
-<h2 class="big">Spread the  <span>Love</span></h2>
+<h2 class="big">Spread the  <span>Excitement</span></h2>
 
 <ul class="features">
   
