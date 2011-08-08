@@ -116,6 +116,24 @@ class ConsoleController extends InternalController {
         return $code;
     }
     
+    public function cmd_rewrite($path = null) {
+        $this->beginExec();
+        $path_tokens = explode("/", $path);
+        $rewritten_path_tokens = \melt\AppController::rewriteRequest($path_tokens);
+        if ($rewritten_path_tokens === null) {
+            echo "Not rewritten, null returned.\n";
+            $rewritten_path = "/$path";
+        } else if ($rewritten_path_tokens === false) {
+            die("Rewritten to: 404, false returned\n");
+        } else {
+            $rewritten_path = "/" . implode("/", $rewritten_path_tokens);
+            echo "Rewritten to: $rewritten_path\n";
+        }
+        $invoke_data = \melt\Controller::pathToInvokeData($rewritten_path, true);
+        $target = ($invoke_data === false)? "Non-existing action": $invoke_data->getControllerClass() . "::" . $invoke_data->getActionName() . "()";
+        die("This corresponds to: $target\n");
+    }
+    
     public function cmd_obj($type) {
         $this->beginExec();
         $types = array(
@@ -143,8 +161,8 @@ class ConsoleController extends InternalController {
                 chdir(APP_DIR . "/views");
                 foreach ($view_tokens as $i => $view_token) {
                     if ($i === count($view_tokens) - 1) {
-                        if (!copy(APP_DIR . "/core/modules/core/files/generic-view.php", $view_token . ".php"))
-                            die("Failed to copy generic.php from scaffolding to target directory.\n");
+                        if (!copy(APP_CORE_DIR . "/core/files/generic-view.php", $view_token . ".php"))
+                            die("Failed to copy generic-view.php to target directory.\n");
                         break;
                     } else if (!is_dir($view_token)) {
                         if (!mkdir($view_token))
@@ -156,34 +174,35 @@ class ConsoleController extends InternalController {
             } else {
                 if (!\preg_match('/([a-z]+[a-z0-9]*)(_[a-z]+[a-z0-9]*)*/', $name))
                     die("Invalid name. For example, supply \"object_name\" to create the class ObjectName.\n");
-                $type1 = substr($type, 0, -1);
+                $type1 = $class !== null? substr($type, 0, -1): "class";
                 $suffix = $class !== null? "_" . $type1: "";
                 $file_name = "$name$suffix.php";
                 $class_name = \melt\string\underline_to_cased($name);
-                $file_data = file_get_contents(APP_DIR . "/core/modules/core/files/generic-$type1.php");
+                $generic_file_path = APP_CORE_DIR . "/core/files/generic-$type1.php";
+                $file_data = file_get_contents($generic_file_path);
                 if ($file_data === false)
-                    die("Failed to read generic.php from scaffolding.\n");
+                    die("Failed to read \"$generic_file_path\".\n");
                 $file_data = str_replace("__template_class_name", $class_name, $file_data);
                 $out_path = APP_DIR . "/$type/$file_name";
                 if (is_file($out_path))
                     die("Object at $out_path already exists!\n");
                 if (file_put_contents($out_path, $file_data) === false)
                     die("Failed to write $out_path\n");
-                die(($suffix !== ""? ucfirst($type1): "Class") . " was successfully created at /$type/$file_name\n");
+                die(ucfirst($type1) . " was successfully created at /$type/$file_name\n");
             }
         }        
         $identifier_is_acceptable_fn = function($identifier) use ($app_only) {
-            return !$app_only || (\strpos($identifier, "__") !== false && \strpos($identifier, "/") !== false);
+            return !$app_only || (\strpos($identifier, "__") === false && \strpos($identifier, "/") === false);
         };
         if ($obj === null) {
             if ($cat)
                 die("You need to specify exactly one file to display.\n");
             if ($type === "views") {
                 $method = "getAll" . \ucfirst($type);
-                foreach ($class::$method() as $view_path => $file_path) {
+                foreach ($class::$method() as $view_path => $generic_file_path) {
                     if (!$app_only
-                    || (!\melt\string\starts_with($file_path, "/core")
-                    && !\melt\string\starts_with($file_path, "/modules")))
+                    || (!\melt\string\starts_with($generic_file_path, "/core")
+                    && !\melt\string\starts_with($generic_file_path, "/modules")))
                         echo "$view_path\n";
                 }
             } else if ($type === "actions") {
@@ -232,7 +251,7 @@ class ConsoleController extends InternalController {
                 $reflector = new \ReflectionMethod($controller, $action_name);
                 if ($cat)
                     die($this->fetchMethodCode($reflector) . "\n");
-                $file_path = $reflector->getFileName();
+                $generic_file_path = $reflector->getFileName();
                 $action_path = \preg_replace('#/index$#', '', $action);
                 if ($action_path == "")
                     $action_path = "/";
@@ -252,7 +271,7 @@ class ConsoleController extends InternalController {
                 }
                 echo "action path: $action_path\n";
                 echo "controller: $controller\n";
-                echo "file path: " . \substr($file_path, \strlen(APP_DIR)) . " "
+                echo "file path: " . \substr($generic_file_path, \strlen(APP_DIR)) . " "
                 . $reflector->getStartLine() . "-" . $reflector->getEndLine() . "\n";
                 $internal = $action_name[0] === "_";
                 echo "visibility: " . ($internal? "internal": "external") . "\n";
@@ -277,11 +296,11 @@ class ConsoleController extends InternalController {
                 if (!\class_exists($obj) || ($class !== null && !is($obj, $class)))
                     die("Class $obj not found among $type.\n");
                 $reflector = new \ReflectionClass($obj);
-                $file_path = $reflector->getFileName();
+                $generic_file_path = $reflector->getFileName();
                 if ($cat)
-                    die(\file_get_contents($file_path));
-                echo "file path: " . \substr($file_path, \strlen(APP_DIR)) . "\n";
-                $print_file_data_fn($file_path);
+                    die(\file_get_contents($generic_file_path));
+                echo "file path: " . \substr($generic_file_path, \strlen(APP_DIR)) . "\n";
+                $print_file_data_fn($generic_file_path);
                 $doc_comment = $reflector->getDocComment();
                 echo "\n";
                 if ($doc_comment === false) {
