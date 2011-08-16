@@ -101,7 +101,7 @@
 <!-- END FEATURES -->
 
 
-
+<br/><br/>
 
 
 
@@ -112,25 +112,48 @@
 <ul class="features team">
     <li>
 
-        <h2>Company</h2>
+        <h2>Company <span>Address</span></h2>
+                <img style="clear:both;float:none;" src="<?php echo APP_ROOT_URL; ?>static/img/meltsoftware/photo-visit-us.jpg" alt="" />
+
         <p>Melt Software AB<br/>
-            Org.Nr 556808-4155<br/>
+            Teknikringen 7, SE-583 30</br>
+            Linköping SWEDEN<br/>
             
         </p>
     </li>
     <li>
 
-        <h2>Visiting <span>Address</span></h2>
-        <p>Teknikringen 7, SE-583 30<br/>
-           Linköping SWEDEN
+        <h2>Selected <span>Clients</span></h2>
+        <p>
+            Agricam AB<br/>
+            Biototal Sweden AB<br/>
+            Cepro AB<br/>
+            Familjelarm Sverige AB<br/>
+            Infoside Sweden AB<br/>
+            Linköping University<br/>
+            Lund University<br/>
+            Oerlikon Solar AG<br/>
+            Sportion Media Group AB<br/>
+            We Love Students AB<br/>
+
         </p>
     </li>
 
     <li>
 
-        <h2>First Time <span>Contact</span></h2>
-        <p>+46 8 64 14 000<br/>
-            team@meltsoftware.com<br/>
+        <h2>Reaching <span>Us</span></h2>
+        <p>
+            We prefer if you have a mutual acquaintance connect us.
+            
+            Should none such exist, then use the following contact details:<br/><br/>
+            
+            
+        +46 8 6414 000 (Office Phone)<br/>
+       team@meltsoftware.com (Team Email)
+            
+            
+            
+            
         </p>
     </li> 
 </ul>
