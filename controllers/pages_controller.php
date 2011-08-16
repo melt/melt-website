@@ -12,6 +12,8 @@ class PagesController extends AppController {
     
     function team(){}
     
+    function melt_software(){}
+    
 }
 
 ?>

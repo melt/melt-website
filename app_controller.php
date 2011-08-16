@@ -7,7 +7,9 @@ abstract class AppController extends Controller {
 
 
     public static function rewriteRequest($path_tokens) {
-        if($path_tokens[0]=="") {
+        if (APP_ROOT_HOST === "meltsoftware.com"){
+            return array("pages", "melt_software");
+        } elseif($path_tokens[0]=="") {
             return array("pages","");
         } elseif (method_exists("melt\PagesController", $path_tokens[0])) {
             array_unshift($path_tokens,"pages");
