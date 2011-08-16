@@ -62,7 +62,7 @@
             Copyright&nbsp;&copy;&nbsp;2010-2011 Melt Software AB. 
 
            
-            Melt is licensed under <a href="<?php echo APP_ROOT_URL; ?>license">a BSD License</a> and maintained by <a href="<?php echo APP_ROOT_URL; ?>team">the awesome Melt team</a>.
+            <a href="http://meltframework.org">Melt Framework</a> is licensed under <a href="<?php echo url("/license"); ?>">a BSD License</a> and maintained by <a href="<?php echo url("/team"); ?>">the awesome Melt team</a>.
             <br/>
         </p>
   

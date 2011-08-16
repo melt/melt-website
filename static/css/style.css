@@ -198,6 +198,11 @@ ul.features li img {
     border:0!important;
 }
 
+/* team on melt software */
+ul.melt-software-team li {
+    height:120px;
+}
+
 ul.small-images li img {
     margin-bottom: 40px;
 }
