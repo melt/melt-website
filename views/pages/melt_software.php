@@ -11,7 +11,7 @@
     
 <h2 class="subtitle">Where is "<span>Omnicloud</span>" ?</h2>
 <p>
-    <b>As of August 1st 2011 Omnicloud AB has been renamed to Melt Software AB.</b>
+    <b>As of July 22nd 2011 Omnicloud AB has been renamed to Melt Software AB.</b>
     The purpose is to consolidate the two previous brands <em>NanoMVC</em> and <em>Omnicloud</em>
     into the single brand <em>Melt</em> that contains both the web application framework 
     and the consulting business.
