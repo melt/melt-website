@@ -23,6 +23,11 @@
 
 
 
+<h2 class="subtitle">Existing <span>hosting</span> client ?</h2>
+<p>
+    <a href="http://panel.meltsoftware.com" target="_blank">Login to the control panel</a> to manage your domains and hosting.
+</p>
+
 </div>
 
 

@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Melt: The PHP Framework You've Been Waiting For</title>
+<title><?php echo $this->getTitle(); ?></title>
 
 <link rel="stylesheet" href="<?php echo APP_ROOT_URL; ?>static/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php echo APP_ROOT_URL; ?>static/css/buttons.css" type="text/css" media="screen" />

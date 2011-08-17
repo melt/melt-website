@@ -4,6 +4,13 @@
 abstract class AppController extends Controller {
     // The layout your controllers use by default.
     public $layout = "/layout";
+    
+    public function getTitle(){
+        if(APP_ROOT_HOST === "meltsoftware.com" || APP_ROOT_HOST === "meltsoftware.com.local")
+            return "Melt Software AB - The team behind the Melt Framework";
+        else
+            return "Melt: The PHP Framework You've Been Waiting For";
+    }
 
 
     public static function rewriteRequest($path_tokens) {
