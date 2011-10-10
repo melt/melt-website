@@ -1,31 +1,22 @@
 <?php namespace melt; ?>
 <div class="the-melt-story">
  
-<h2 class="subtitle">Welcome to <span>Melt</span> Software AB</h2>
+<h2 class="subtitle">Welcome to <span>Melt</span></h2>
 <p>
-    We build scalable web apps using the powerful home-brewed <a href="http://meltframework.org">Melt framework</a>.
-    Our clients range from multinational corporations to startups. 
-    Our team is made up of hand-picked internet rockstars who excel in their respective fields - whether it is requirements analysis, usability design or backend development.    
-</p>    
     
-    
-<h2 class="subtitle">Where is "<span>Omnicloud</span>" ?</h2>
-<p>
-    <b>As of July 22nd 2011 Omnicloud AB has been renamed to Melt Software AB.</b>
-    The purpose is to consolidate the two previous brands <em>NanoMVC</em> and <em>Omnicloud</em>
-    into the single brand <em>Melt</em> that contains both the web application framework 
-    and the consulting business.
-    This is a simple change of name and not a merger or acquisition
-    so everything is <b>exactly like before</b> and you should not expect anything
-    to change (except perhaps the company name on the invoice). If you have any questions about
-    the new name we will gladly explain more.
+    Melt Software AB ("Melt") is a reliable partner in software development.
+    The company was founded in 2010 and has since built custom software solutions for 
+    multinational corporations as well as SMEs.
+    Melt works with long-term client relationships and has an independent role
+    that enables the company to select the technical solution that best 
+    solves the client's problem.
+    The backbone of Melt is <a href="http://meltframework.org" target="_blank">Melt Framework</a>, the open-source
+    web development framework that is used by seasoned developers globally.
 </p>
 
 
-
-<h2 class="subtitle">Existing <span>hosting</span> client ?</h2>
 <p>
-    <a href="http://panel.meltsoftware.com" target="_blank">Login to the control panel</a> to manage your domains and hosting.
+   Existing hosting client? <a href="http://panel.meltsoftware.com" target="_blank">Login to the control panel</a> to manage your domains and hosting.
 </p>
 
 </div>

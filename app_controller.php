@@ -6,8 +6,8 @@ abstract class AppController extends Controller {
     public $layout = "/layout";
     
     public function getTitle(){
-        if(APP_ROOT_HOST === "meltsoftware.com" || APP_ROOT_HOST === "meltsoftware.com.local")
-            return "Melt Software AB - The team behind the Melt Framework";
+        if(APP_ROOT_HOST === "meltsoftware.com" || APP_ROOT_HOST === "meltsoftware.local")
+            return "Melt Software AB - Creators of Melt Framework";
         else
             return "Melt: The PHP Framework You've Been Waiting For";
     }
@@ -15,7 +15,7 @@ abstract class AppController extends Controller {
 
     public static function rewriteRequest($path_tokens) {
         if ( APP_ROOT_HOST === "meltsoftware.com" && $path_tokens[0]=="" || 
-             APP_ROOT_HOST === "meltsoftware.com.local" && $path_tokens[0]=="" ){
+             APP_ROOT_HOST === "meltsoftware.local" && $path_tokens[0]=="" ){
             return array("pages", "melt_software");
         } elseif($path_tokens[0]=="") {
             return array("pages","");

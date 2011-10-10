@@ -1,5 +1,5 @@
 <?php namespace melt; ?>    
-<h2 class="subtitle">The <span>PHP framework</span> you've been waiting for</h2>
+<h2 class="subtitle">The <span>PHP framework</span> for <span>lean</span> startup teams</h2>
 <!-- START CALL TO ACTIONS -->
 <ul class="actions">
     <li><a class="green button" href="http://github.com/melt/melt">Download Melt<span>Completely free, BSD License</span></a></li>
