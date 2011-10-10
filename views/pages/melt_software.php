@@ -4,7 +4,7 @@
 <h2 class="subtitle">Welcome to <span>Melt</span></h2>
 <p>
     
-    Melt Software AB ("Melt") is a reliable partner in software development.
+    Melt Software AB ("Melt") is a trusted partner in software development.
     The company was founded in 2010 and has since built custom software solutions for 
     multinational corporations as well as SMEs.
     Melt works with long-term client relationships and has an independent role
